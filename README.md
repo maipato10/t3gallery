@@ -4,5 +4,12 @@
 -[x] Make it deploy
 -[x] Tidy up build
 -[x] scaffold basic UI with mock data
--[] Actually set up a database
--[] Attach database to UI
+-[x] Actually set up a database
+-[x] Attach database to UI
+-[] Add authentication
+-[] Add image upload
+-[]Error Management
+-[] Routing/image page (parallel route)
+-[] Delete button (w/server Actions)
+-[] Analytics (posthog)
+-[] Ratelimiting (upstash)
