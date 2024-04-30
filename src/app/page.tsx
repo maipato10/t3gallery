@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { db } from "@vercel/postgres";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
+//NB ALWAYS FROM HERE AND NOT VERCEL
+import { db } from "~/server/db";
+export const dynamic = "force-dynamic";
 
 const mockUrls = [
   "https://utfs.io/f/25c0c126-4ee1-4287-a370-d27360fde6aa-ibcluw.jpg",
@@ -14,12 +16,18 @@ const mockImages = mockUrls.map((url, index) => ({
   id: index + 1,
   url,
 }));
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await db.query.posts.findMany()
   return (
     <main className="">
       <div className="flex flex-wrap">
-        {[...mockImages,...mockImages,...mockImages].map((image) => (
-          <div key={image.id} className="w-48 p-4">
+      {posts.map((post) => (
+          <div key={post.id} className="w-48 p-4">
+            <div>{post.name}</div>
+          </div>
+        ))}
+        {[...mockImages,...mockImages,...mockImages].map((image,index) => (
+          <div key={image.id + "-" + index} className="w-48 p-4">
             <img src={image.url} alt={"image"}/>
           </div>
         ))}
