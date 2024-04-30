@@ -8,7 +8,7 @@
 -[x] Attach database to UI
 -[x] Add authentication
 -[] Add image upload
--[] Error Management
+-[] Error Management(sentry)
 -[] Routing/image page (parallel route)
 -[] Delete button (w/server Actions)
 -[] Analytics (posthog)
