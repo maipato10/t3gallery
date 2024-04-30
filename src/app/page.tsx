@@ -4,12 +4,11 @@ import { sql } from "@vercel/postgres";
 //NB ALWAYS FROM HERE AND NOT VERCEL
 import { db } from "~/server/db";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { getImages } from "~/server/queries";
 export const dynamic = "force-dynamic";
 
 async function Images() {
-  const images = await db.query.images.findMany({
-    orderBy: (model, { desc }) => desc(model.id),
-  });
+  const images = await getImages();
   return (
     <div className="flex flex-wrap gap-2">
       {[...images, ...images, ...images].map((image, index) => (
